@@ -9,10 +9,11 @@ from pydantic import BaseModel
 
 
 # What the client sends TO our API
-class ChatRequest(BaseModel):
-    message: str    # The user's message, e.g. "Hi, my name is Ahmad"
+class ChatIn(BaseModel):
+    message: str            # The user's message, e.g. "Hi, my name is Rizwan"
 
 
 # What our API sends BACK
-class ChatResponse(BaseModel):
-    reply: str      # The agent's response
+class ChatOut(BaseModel):
+    reply: str              # The agent's response
+    conversation_id: int

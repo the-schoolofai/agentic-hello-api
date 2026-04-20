@@ -38,10 +38,11 @@ agent = Agent(
 
 
 # --- Helper function the API will call ---
-async def run_agent(user_message: str) -> str:
+async def run_agent(history: list[dict], new_message: str) -> str:
     """
-    Send a single message to the agent and return its text reply.
     This is the one function FastAPI API endpoint needs.
     """
-    result = await Runner.run(agent, user_message)
+    input_list = history + [{"role": "user", "content": new_message}]
+    result = await Runner.run(agent, input_list)
+    
     return result.final_output
